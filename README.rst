@@ -164,6 +164,26 @@ API Endpoints
    * - **/api/v1/openapi.json**
      - Open API information in json format
 
+Test Image Processing Utilities
+++++++++++++++++++++++++++++++
+
+The ``tests/test_image_processing`` folder contains advanced test utilities and scripts for validating and visualizing face segmentation, landmark detection, and region mask generation. These tests are designed to:
+
+- Load and verify segmentation maps and facial landmark files.
+- Analyze and visualize unique segmented regions, including region labeling and area statistics.
+- Estimate face rotation and apply geometric corrections to both images and landmark coordinates.
+- Generate and save rotated images and landmarks for further analysis.
+- Load and annotate MediaPipe Face Mesh landmark indices, mapping them to semantic facial regions (e.g., eyes, nose, chin, forehead).
+- Automatically create SVG fill masks for specific facial regions (such as eyes, nose, chin, and forehead) using the rotated landmarks and segmentation maps. For most regions, a convex hull is used to create a smooth mask boundary, while for the chin/jaw region, the natural landmark order is preserved and sorted to avoid zigzag artifacts.
+- Output debug images overlaying the generated masks and region labels for easy inspection.
+
+These utilities are useful for:
+- Validating the accuracy of segmentation and landmark extraction pipelines
+- Creating region-specific masks for downstream tasks (e.g., data augmentation, region-based analysis)
+- Visualizing and debugging the results of face mesh and segmentation algorithms
+
+All generated masks and debug images are saved in the ``data/`` directory for review.
+
 Maintainers
 -----------
 
